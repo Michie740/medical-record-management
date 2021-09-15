@@ -3,6 +3,10 @@
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
 
+**Database Design**
+[Medical Record Management Database Design.pdf](https://github.com/Michie740/medical-record-management/files/7165864/Medical.Record.Management.Database.Design.pdf)
+
+
 **Technical Stack:** \
 Python\
 Flask/SQLAlchemy - makes the product easier to deploy with the availability of database templates\
