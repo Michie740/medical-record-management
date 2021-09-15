@@ -12,7 +12,7 @@ unit: FORCE
 	python3 -m unittest source.db
 
 lint: FORCE
-	flake8  $(git ls-files '*.py')
+	flake8 *.py
 
 dev_env: FORCE
 	pip install -r requirements.txt
