@@ -1,5 +1,10 @@
 # medical-record-management
 
+**Instructions**
+1. Use `make dev_env` to download all the environment requirements
+1. Use the command `flask run` to run the site locally and access it via `http://127.0.0.1:5000/`
+1. Use commands `make lint` or `make github` to lint using flake8 or push changes to github
+
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
 
