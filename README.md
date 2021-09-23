@@ -6,6 +6,8 @@
 1. Run `make lint` to use flake8 linter on all .py files
 1. Run `python manage.py runserver` to run locally
 1. Navigate to `127.0.0.1:8000/` on browser for home page
+1. To view admin style, create superuser using `python manage.py createsuperuser` and then navigate to `127.0.0.1:8000/admin`
+
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
 
