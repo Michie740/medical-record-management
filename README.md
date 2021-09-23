@@ -1,10 +1,11 @@
 # medical-record-management
 
 **Instructions**
-1. Use `make dev_env` to download all the environment requirements
-1. Use the command `flask run` to run the site locally and access it via `http://127.0.0.1:5000/`
-1. Use commands `make lint` or `make github` to lint using flake8 or push changes to github
-
+1. To run this project locally, fork and clone the repo (ideally in a virtual environment)
+1. Navigate into medical_record_management and then run `make dev_env` to download dependencies
+1. Run `make lint` to use flake8 linter on all .py files
+1. Run `python manage.py runserver` to run locally
+1. Navigate to `127.0.0.1:8000/` on browser for home page
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
 
@@ -14,8 +15,8 @@ A medical record management system designed for the hospital setting. It will al
 
 **Technical Stack:** \
 Python\
-Flask/SQLAlchemy - makes the product easier to deploy with the availability of database templates\
-PostgreSQL (?)\
+Django
+PostgreSQL
 Docker (?)\
 HTML/CSS/JS/etc.
 
