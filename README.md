@@ -17,8 +17,8 @@ A medical record management system designed for the hospital setting. It will al
 
 **Technical Stack:** \
 Python\
-Django
-PostgreSQL
+Django\
+PostgreSQL\
 Docker (?)\
 HTML/CSS/JS/etc.
 
