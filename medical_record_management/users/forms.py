@@ -10,3 +10,6 @@ class UserCreateForm(forms.ModelForm):
                   'security_q1', 'security_a1',
                   'security_q2', 'security_a2',
                   'security_q3', 'security_a3']
+        widgets = {
+            "password": forms.PasswordInput(),
+        }

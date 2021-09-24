@@ -3,7 +3,8 @@ FORCE:
 prod: tests github
 
 github: FORCE
-	- git commit -a
+    - git add .
+	- git commit -m "Auto-push from make command"
 	git push origin master
 
 unit: FORCE
