@@ -18,18 +18,32 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Patient',
             fields=[
-                ('patient_id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('patient_id', models.UUIDField(
+                    default=uuid.uuid4,
+                    editable=False,
+                    primary_key=True,
+                    serialize=False)
+                 ),
                 ('first_name', models.CharField(max_length=200)),
                 ('last_name', models.CharField(max_length=200)),
                 ('dob', models.DateTimeField()),
-                ('preexisting_conditions', models.CharField(max_length=700)),
+                ('preexisting_conditions', models.CharField(
+                    max_length=700)
+                 ),
                 ('allergies', models.CharField(max_length=700)),
                 ('height_ft', models.PositiveIntegerField()),
                 ('height_in', models.PositiveIntegerField()),
                 ('weight', models.FloatField()),
                 ('email', models.CharField(max_length=200)),
-                ('phone', phone_field.models.PhoneField(help_text="Patient's preferred phone number", max_length=31)),
-                ('doctor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
+                ('phone',
+                 phone_field.models.PhoneField(
+                     help_text="Patient's preferred phone number",
+                     max_length=31)
+                 ),
+                ('doctor', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='users.user')
+                 ),
             ],
         ),
     ]

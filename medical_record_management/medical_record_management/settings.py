@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'bootstrap4',
     'phone_field',
     'patients',
@@ -113,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = "users.User"
+SITE_ID = 1
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

@@ -1,19 +1,22 @@
-from django.http import HttpResponseRedirect
-from django.views.generic import CreateView
-from users import forms as user_forms
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from users import models as user_models
+from users.allauth_customizations import CustomSignupForm
+
+from allauth.account import views as allauth_views
+from allauth.account.views import LoginView, PasswordChangeView
 
 
-class UserCreateView(CreateView):
-    model = user_models.User
-    form_class = user_forms.UserCreateForm
-
-    def form_invalid(self, form):
-        print("UserCreate form errors", form.errors)
-        return super().form_invalid(form)
-
+class CustomLoginView(LoginView):
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.created_by = self.request.user
-        self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
+        response = super().form_valid(form)
+        user_models.LoginRecord.objects.create(user=form.user)
+        return response
+
+
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    success_url = reverse_lazy('')
+
+
+class CustomSignupView(allauth_views.SignupView):
+    form_class = CustomSignupForm

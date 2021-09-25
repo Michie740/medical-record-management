@@ -1,8 +1,8 @@
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
+class User(AbstractUser):
     SUPERUSER = 1
     ADMIN = 2
     BASIC = 3
@@ -17,12 +17,9 @@ class User(models.Model):
         (MEDIUM_LEVEL_CLINICIAN, 'Medium level clinician'),
         (LOW_LEVEL_CLINICIAN, 'Low level clinician'),
     )
-    username = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
-    security_level = models.CharField(choices=SECURITY_LEVELS, max_length=50, default=BASIC)
+    security_level = models.CharField(
+        choices=SECURITY_LEVELS, max_length=50, default=BASIC
+    )
     security_q1 = models.CharField(max_length=200)
     security_q2 = models.CharField(max_length=200)
     security_q3 = models.CharField(max_length=200)
@@ -30,11 +27,11 @@ class User(models.Model):
     security_a2 = models.CharField(max_length=200)
     security_a3 = models.CharField(max_length=200)
 
-    def save(self):
-        if len(self.password) < 10:
-            return ValidationError("Must have a password of length 10 or greater")
-        else:
-            super().save()
-
     def __str__(self):
-        return "Username is {}, full name is {} {} and security level is {}".format(self.username, self.first_name, self.last_name, self.security_level)
+        return (
+            "Username is {}, full name is {} {}"
+            " and security level is {}".format(
+                self.username, self.first_name,
+                self.last_name, self.security_level
+            )
+        )

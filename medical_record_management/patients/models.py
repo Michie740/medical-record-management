@@ -6,8 +6,13 @@ from phone_field import PhoneField
 
 
 class Patient(models.Model):
-    patient_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    doctor = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    patient_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4,
+        editable=False
+    )
+    doctor = models.ForeignKey(
+        user_models.User, on_delete=models.CASCADE
+    )
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     dob = models.DateTimeField()
@@ -17,13 +22,21 @@ class Patient(models.Model):
     height_in = models.PositiveIntegerField()
     weight = models.FloatField()
     email = models.CharField(max_length=200)
-    phone = PhoneField(help_text="Patient's preferred phone number")
+    phone = PhoneField(
+        help_text="Patient's preferred phone number"
+    )
 
     def save(self):
-        if (self.doctor.security_level != user_models.User.HIGH_LEVEL_CLINICIAN) and (self.doctor.security_level != user_models.User.MEDIUM_LEVEL_CLINICIAN):
-            return ValidationError("Doctor must be a medium or high level clinician")
+        if (self.doctor.security_level not in [
+            user_models.User.HIGH_LEVEL_CLINICIAN,
+            user_models.User.MEDIUM_LEVEL_CLINICIAN
+        ]):
+            return ValidationError(
+                "Doctor must be a medium or high level clinician"
+            )
         else:
             super().save()
 
     def __str__(self):
-        return "Patient ID is {} and name is {}".format(self.patient_id, self.first_name, self.last_name)
+        return "Patient ID is {} and name is {} {}".format(
+            self.patient_id, self.first_name, self.last_name)
