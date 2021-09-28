@@ -13,4 +13,4 @@ lint: FORCE
 	flake8 medical_record_management/*.py
 
 dev_env: FORCE
-	pip install -r $/../requirements.txt
+	pip install -r requirements.txt
