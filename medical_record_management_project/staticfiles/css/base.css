@@ -1,0 +1,12 @@
+.errorlist {
+    color: red;
+}
+
+.navbar-nav a {
+    color: black;
+    font-weight: 600;
+}
+
+body {
+    color: blue;
+}

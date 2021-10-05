@@ -1,7 +1,9 @@
+coverage==6.0
 Django==3.2.7
 django-allauth==0.45.0
 django-bootstrap4==3.0.1
 django-phone-field==1.8.1
 factory-boy==3.2.0
 flake8==3.9.2
+mock==4.0.3
 pytest==6.2.5
