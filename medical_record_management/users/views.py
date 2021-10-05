@@ -10,17 +10,9 @@ from allauth.account.views import LoginView, PasswordChangeView
 class CustomLoginView(LoginView):
     success_url = reverse_lazy('patient_list')
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        user_models.LoginRecord.objects.create(user=form.user)
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        return response
-
 
 class CustomSignupView(allauth_views.SignupView):
+    success_url = reverse_lazy('patient_list')
     model = user_models.User
     form_class = CustomSignupForm
     template_name = 'users/signup.html'

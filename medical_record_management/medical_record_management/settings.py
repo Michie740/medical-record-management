@@ -142,6 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'emails')
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
