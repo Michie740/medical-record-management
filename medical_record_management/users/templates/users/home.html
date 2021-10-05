@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
 You're home!
 <a href="{% url 'account_login' %}"> Log In </a>
 
 
-</body>
-</html>
+{% endblock %}

@@ -3,12 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    SUPERUSER = 1
-    ADMIN = 2
-    BASIC = 3
-    HIGH_LEVEL_CLINICIAN = 4
-    MEDIUM_LEVEL_CLINICIAN = 5
-    LOW_LEVEL_CLINICIAN = 6
+    SUPERUSER = 'Superuser'
+    ADMIN = 'Admin'
+    BASIC = 'Basic'
+    HIGH_LEVEL_CLINICIAN = 'High_level_clinician'
+    MEDIUM_LEVEL_CLINICIAN = 'Medium_level_clinician'
+    LOW_LEVEL_CLINICIAN = 'Low_level_clinician'
     SECURITY_LEVELS = (
         (SUPERUSER, 'Superuser'),
         (ADMIN, 'Admin'),
@@ -35,3 +35,9 @@ class User(AbstractUser):
                 self.last_name, self.security_level
             )
         )
+
+    @property
+    def is_medium_or_high_clinician(self):
+        is_medium_level = (self.security_level == User.MEDIUM_LEVEL_CLINICIAN)
+        is_high_level = (self.security_level == User.HIGH_LEVEL_CLINICIAN)
+        return is_high_level or is_medium_level

@@ -61,6 +61,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'medical_record_management.urls'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+  os.path.join(BASE_DIR, 'medical_record_management', 'static'),
+]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'localdata', 'media')
+MEDIA_URL = '/media/'
+
+
 TEMPLATES = [
     {
         'BACKEND':
@@ -135,8 +144,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
