@@ -14,3 +14,11 @@ lint: FORCE
 
 dev_env: FORCE
 	pip install -r requirements.txt
+
+test: FORCE
+	python medical_record_management_project/manage.py test
+
+coverage: FORCE
+	coverage run medical_record_management_project/manage.py test
+	coverage report -m
+

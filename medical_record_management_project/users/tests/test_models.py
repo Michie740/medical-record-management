@@ -10,9 +10,12 @@ class TestUser(TestCase):
         self.user = user_factories.UserFactory()
 
     def test_str_method(self):
-        expected = ("Username is test_username, "
-                    "full name is TestFirstName TestLastName and "
+        expected = ("Username is {}, "
+                    "full name is {} {} and "
                     "security level is {}".format(
+                        self.user.username,
+                        self.user.first_name,
+                        self.user.last_name,
                         user_models.User.HIGH_LEVEL_CLINICIAN)
                     )
         actual = str(self.user)
