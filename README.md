@@ -4,10 +4,11 @@
 1. To run this project locally, fork and clone the repo (ideally in a virtual environment)
 1. Navigate into medical_record_management and then run `make dev_env` to download dependencies
 1. Run `make lint` to use flake8 linter on all .py files
-1. Cd into the medical_record_management folder
-|      Run `python manage.py runserver` to run locally
-3. Navigate to `127.0.0.1:8000/` on browser for home page
-4. To view admin style, create superuser using `python manage.py createsuperuser` and then navigate to `127.0.0.1:8000/admin`
+1. Run `python manage.py migrate` to build DBs
+1. Run `python manage.py runserver` to run locally
+1. Navigate to `127.0.0.1:8000/` on browser for home page
+1. To view admin style, create superuser using `python manage.py createsuperuser` and then navigate to `127.0.0.1:8000/admin`
+
 
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
