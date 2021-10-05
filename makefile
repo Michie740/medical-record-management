@@ -7,7 +7,7 @@ github: FORCE
 	git push origin master
 
 lint: FORCE
-	flake8 medical_record_management/*.py
+	flake8 medical_record_management_project/
 
 dev_env: FORCE
 	pip install -r requirements.txt

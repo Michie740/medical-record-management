@@ -10,7 +10,10 @@ urlpatterns = [
          user_views.CustomLoginView.as_view(),
          name="account_login"
          ),
-    path('accounts/signup/', user_views.CustomSignupView.as_view(), name="account_signup"),
+    path('accounts/signup/',
+         user_views.CustomSignupView.as_view(),
+         name="account_signup"
+         ),
     path('accounts/password/change/',
          user_views.CustomPasswordChangeView.as_view(),
          name='account_change_password'),
