@@ -59,6 +59,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm',
+}
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+
 ROOT_URLCONF = 'medical_record_management.urls'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -128,6 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'emails')
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
