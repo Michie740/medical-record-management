@@ -30,7 +30,7 @@ class CustomSignupView(allauth_views.SignupView):
     success_url = reverse_lazy('patient_list')
 
 
-class MediumOrHighSecurityLevelOnlyMixin(UserPassesTestMixin):
+class MediumOrHighSecurityLevelOnlyMixin(UserPassesTestMixin, LoginRequiredMixin):
 
     def test_func(self):
-        return self.request.user.is_medium_or_high_clinician
+        return (not self.request.user.is_anonymous) and self.request.user.is_medium_or_high_clinician

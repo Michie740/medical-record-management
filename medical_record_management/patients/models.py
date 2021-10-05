@@ -8,7 +8,7 @@ from phone_field import PhoneField
 class Patient(models.Model):
     patient_id = models.UUIDField(
         primary_key=True, default=uuid.uuid4,
-        editable=False
+        editable=False, unique=True
     )
     doctor = models.ForeignKey(
         user_models.User, on_delete=models.CASCADE
@@ -26,7 +26,7 @@ class Patient(models.Model):
         help_text="Patient's preferred phone number"
     )
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if (self.doctor.security_level not in [
             user_models.User.HIGH_LEVEL_CLINICIAN,
             user_models.User.MEDIUM_LEVEL_CLINICIAN

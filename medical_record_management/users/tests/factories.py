@@ -3,14 +3,11 @@ import factory.fuzzy
 from users import models as user_models
 
 
-PASSWORD = "am@zingly secure p@ssw0rd"
-
-
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = user_models.User
 
-    username = "test_username"
+    username = factory.Sequence(lambda n: "user_name_%d" % n)
     password = "test_password123"
     first_name = "TestFirstName"
     last_name = "TestLastName"
