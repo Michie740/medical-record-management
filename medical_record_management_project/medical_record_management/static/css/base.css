@@ -7,3 +7,8 @@
     font-weight: 600;
 }
 
+html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

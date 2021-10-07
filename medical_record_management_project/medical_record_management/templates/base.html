@@ -20,22 +20,30 @@
         </ul>
     </div>
     {% endif %}
-    <div id="title" class="container-fluid">
-        {% block title %}{% endblock %}
+    <div class="left">
+        <div class="bodycontent">
+            <div id="title" class="container-fluid">
+                {% block title %}{% endblock %}
+            </div>
+            <br>
+            <div id="content" class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <div id="footer">
+            {% block footer %}
+            <br><br>
+            <div class="text-center">
+                &copy; Copyright 2021 | v1.4
+            </div>
+            {% endblock %}
+        </div>
     </div>
-    <br>
-    <div id="content" class="container-fluid">
-        {% block content %}{% endblock %}
+    <div class="design ">
+
     </div>
 
-    <div id="footer">
-        {% block footer %}
-        <br><br>
-        <div class="text-center">
-            &copy; Copyright 2021 | v1.4
-        </div>
-        {% endblock %}
-    </div>
+
 
 </body>
 
