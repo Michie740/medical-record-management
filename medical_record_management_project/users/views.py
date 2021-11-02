@@ -22,7 +22,11 @@ class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy('patient_list')
 
 
-class MediumOrHighSecurityLevelOnlyMixin(UserPassesTestMixin, LoginRequiredMixin):
+class MediumOrHighSecurityLevelOnlyMixin(
+        UserPassesTestMixin, LoginRequiredMixin):
 
     def test_func(self):
-        return (not self.request.user.is_anonymous) and self.request.user.is_medium_or_high_clinician
+        return (
+                (not self.request.user.is_anonymous)
+                and self.request.user.is_medium_or_high_clinician
+        )

@@ -28,7 +28,7 @@ class TestPatientListView(TestCase):
         self.assertContains(response, "<td>No patients.</td>")
 
     def test_logged_in_with_patient(self):
-        patient = patient_factories.PatientFactory(doctor = self.doctor)
+        patient = patient_factories.PatientFactory(doctor=self.doctor)
 
         response = self.client.get(self.url)
 
@@ -37,7 +37,9 @@ class TestPatientListView(TestCase):
 
     def test_logged_in_low_level(self):
         self.client.logout()
-        self.doctor = user_factories.UserFactory(security_level=user_models.User.LOW_LEVEL_CLINICIAN)
+        self.doctor = user_factories.UserFactory(
+            security_level=user_models.User.LOW_LEVEL_CLINICIAN
+        )
         self.client.force_login(self.doctor)
 
         response = self.client.get(self.url)

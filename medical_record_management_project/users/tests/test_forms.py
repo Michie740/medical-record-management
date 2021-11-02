@@ -32,7 +32,10 @@ class TestCustomSignupForm(TestCase):
             'security_a3': "a3",
         }
         response = self.client.post(self.url, data=duplicated_data)
-        self.assertContains(response, "A user with that username already exists.")
+        self.assertContains(
+            response,
+            "A user with that username already exists."
+        )
 
     def test_correct(self):
         correct_data = {

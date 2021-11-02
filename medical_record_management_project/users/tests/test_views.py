@@ -12,7 +12,9 @@ class TestMediumOrHighSecurityLevelOnlyMixin(TestCase):
         self.mixin = user_views.MediumOrHighSecurityLevelOnlyMixin()
 
     def test_test_func_not_qualified_clinician(self):
-        user = user_factories.UserFactory(security_level=user_models.User.BASIC)
+        user = user_factories.UserFactory(
+            security_level=user_models.User.BASIC
+        )
         self.mixin.request = MagicMock(user=user)
 
         result = self.mixin.test_func()
@@ -20,7 +22,9 @@ class TestMediumOrHighSecurityLevelOnlyMixin(TestCase):
         self.assertFalse(result)
 
     def test_test_func_high_level_clinician(self):
-        high_level_user = user_factories.UserFactory(security_level=user_models.User.HIGH_LEVEL_CLINICIAN)
+        high_level_user = user_factories.UserFactory(
+            security_level=user_models.User.HIGH_LEVEL_CLINICIAN
+        )
         self.mixin.request = MagicMock(user=high_level_user)
 
         result = self.mixin.test_func()
@@ -28,7 +32,9 @@ class TestMediumOrHighSecurityLevelOnlyMixin(TestCase):
         self.assertTrue(result)
 
     def test_test_func_qualified_clinician(self):
-        med_level_user = user_factories.UserFactory(security_level=user_models.User.MEDIUM_LEVEL_CLINICIAN)
+        med_level_user = user_factories.UserFactory(
+            security_level=user_models.User.MEDIUM_LEVEL_CLINICIAN
+        )
         self.mixin.request = MagicMock(user=med_level_user)
 
         result = self.mixin.test_func()

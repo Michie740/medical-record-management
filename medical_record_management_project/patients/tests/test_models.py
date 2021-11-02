@@ -10,7 +10,9 @@ class TestPatient(TestCase):
 
     def test_str_method(self):
         expected = ("Patient ID is {} and name is {} {}".format(
-            self.patient.patient_id, self.patient.first_name, self.patient.last_name)
+            self.patient.patient_id,
+            self.patient.first_name,
+            self.patient.last_name)
         )
         actual = str(self.patient)
 

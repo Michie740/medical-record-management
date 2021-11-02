@@ -20,6 +20,7 @@ class User(AbstractUser):
     security_level = models.CharField(
         choices=SECURITY_LEVELS, max_length=50, default=BASIC
     )
+    # TODO: ADD A CONSTANT FOR THE 200
     security_q1 = models.CharField(max_length=200)
     security_q2 = models.CharField(max_length=200)
     security_q3 = models.CharField(max_length=200)

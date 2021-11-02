@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% load static %}{% block title %}LOGO{% endblock %} {% block content %} You're home!
-<br>
-<a href="{% url 'account_login' %}"> Sign In </a>
-<!-- <a class="dropdown-item" href="{% url 'account_logout' %}"> Log Out </a> -->
-<link rel="stylesheet" href="{% static 'users/style.css' %}"> {% endblock %}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %} You're home! <br />
+<a href="{% url 'account_login' %}"> Sign In </a><br />
+<a href="{% url 'account_signup' %}"> Sign Up </a><br />
+<a href="{% url 'account_logout' %}"> Sign Out </a> {% endblock %}
