@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <br/>
+    <!-- <img src="{% static 'users/images/MediRec.jpg' %}" class="logo" alt="logo"> <br/> -->
+
 </head>
 
 
@@ -23,7 +26,7 @@
     <div class="left">
         <div class="bodycontent">
             <div id="title" class="container-fluid">
-                {% block title %}{% endblock %}
+                <img src="{% static 'users/images/MediRec.jpg' %}" class="logo" alt="logo"> <br/> {% block title %}{% endblock %}
             </div>
             <br>
             <div id="content" class="container-fluid">

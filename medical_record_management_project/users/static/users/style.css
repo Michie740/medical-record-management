@@ -30,3 +30,28 @@ body {
 .design {
     grid-column: 2;
 }
+
+.logo {
+    width: 60%;
+    height: auto;
+}
+
+#singincontent {
+    /* border: 3px solid green; */
+    height: 90%;
+}
+
+#center {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    /* border: 3px solid green; */
+    padding: 10px;
+    /* top: 50%; */
+}
+
+.info {
+    padding: .5em
+}
