@@ -2,6 +2,7 @@ from django.test import Client, TestCase
 
 from django.urls import reverse
 from patients.tests import factories as patient_factories
+from patients import models as patient_models
 from users.tests import factories as user_factories
 from users import models as user_models
 
@@ -44,3 +45,52 @@ class TestPatientListView(TestCase):
 
         response = self.client.get(self.url)
         self.assertEqual(403, response.status_code)
+
+
+class TestPatientAddView(TestCase):
+
+    def setUp(self):
+        self.address = patient_factories.AddressFactory()
+        self.doctor = user_factories.UserFactory()
+        self.url = reverse("add_patient")
+
+    def test_get(self):
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "<h1>Add Patient</h1>")
+        self.assertContains(response, '<label class="col-md-3 col-form-label" for="id_address">Address</label>')
+
+    def test_invalid_post(self):
+        data = {}
+        number_of_patients_before = patient_models.Patient.objects.all().count()
+
+        response = self.client.post(self.url, data=data, follow=False)
+
+        self.assertEqual(200, response.status_code)
+        self.assertContains(response, 'This field is required', count=12)
+        number_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(number_of_patients_before, number_of_patients_after)
+
+    def test_valid_post(self):
+        data = {
+            "doctor": self.doctor.id,
+            "address": self.address.address_id,
+            "first_name": "First_Name",
+            "last_name": "Last_Name",
+            "dob": "01/02/03",
+            "preexisting_conditions": "None",
+            "allergies": "None",
+            "height_ft": 5,
+            "height_in": 4,
+            "weight": 3,
+            "email": "tester@example.com",
+            "phone_0": "+1234567890",
+            "phone_1": "+1234567890"
+        }
+        number_of_patients_before = patient_models.Patient.objects.all().count()
+
+        response = self.client.post(self.url, data=data, follow=False)
+        self.assertEqual(302, response.status_code)
+
+        number_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(number_of_patients_before+1, number_of_patients_after)

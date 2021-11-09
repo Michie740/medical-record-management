@@ -20,3 +20,15 @@ class PatientFactory(factory.django.DjangoModelFactory):
     weight = 140
     email = "test@example.com"
     phone = "5017891825"
+
+
+class AddressFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = patient_models.Address
+
+    address_id = factory.Sequence(lambda n: "%d" % n)
+    street_address = factory.Sequence(lambda n: "123%d Main St" % n)
+    city = "Brooklyn"
+    zip_code = "12345"
+    state = "NY"
+

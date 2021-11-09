@@ -49,6 +49,6 @@ class RecordAddView(MediumOrHighSecurityLevelOnlyMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
-        print("RECORD ADD ERRORS", form.errors)
+        print("Record Add Errors:", form.errors)
         return super().form_invalid(form)
 
