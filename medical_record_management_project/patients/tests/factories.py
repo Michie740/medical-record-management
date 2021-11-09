@@ -31,4 +31,3 @@ class AddressFactory(factory.django.DjangoModelFactory):
     city = "Brooklyn"
     zip_code = "12345"
     state = "NY"
-

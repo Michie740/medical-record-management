@@ -14,7 +14,9 @@ class RecordListView(MediumOrHighSecurityLevelOnlyMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['patient'] = patient_models.Patient.objects.get(pk=self.get_patient_pk())
+        context['patient'] = patient_models.Patient.objects.get(
+            pk=self.get_patient_pk()
+        )
         return context
 
     def get_patient_pk(self):
@@ -36,7 +38,9 @@ class RecordAddView(MediumOrHighSecurityLevelOnlyMixin, CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['patient'] = patient_models.Patient.objects.get(pk=self.get_patient_pk())
+        context['patient'] = patient_models.Patient.objects.get(
+            pk=self.get_patient_pk()
+        )
         return context
 
     def get_success_url(self):
@@ -44,11 +48,12 @@ class RecordAddView(MediumOrHighSecurityLevelOnlyMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.patient = patient_models.Patient.objects.get(pk=self.get_patient_pk())
+        self.object.patient = patient_models.Patient.objects.get(
+            pk=self.get_patient_pk()
+        )
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
         print("Record Add Errors:", form.errors)
         return super().form_invalid(form)
-

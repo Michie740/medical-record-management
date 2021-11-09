@@ -1,7 +1,6 @@
 from django.urls import path, include
 from django.views.generic import TemplateView, RedirectView
 from users import views as user_views
-from patients import views as patient_views
 
 urlpatterns = [
     path('', TemplateView.as_view(
@@ -19,5 +18,5 @@ urlpatterns = [
          user_views.CustomPasswordChangeView.as_view(),
          name='account_change_password'),
     path('accounts/', include('allauth.urls')),
-    path('', RedirectView.as_view(url='login/handle/', permanent=False)), 
+    path('', RedirectView.as_view(url='login/handle/', permanent=False)),
 ]

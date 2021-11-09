@@ -58,18 +58,18 @@ class TestPatientAddView(TestCase):
         response = self.client.get(self.url)
 
         self.assertContains(response, "<h1>Add Patient</h1>")
-        self.assertContains(response, '<label class="col-md-3 col-form-label" for="id_address">Address</label>')
+        self.assertContains(response, 'for="id_address">Address')
 
     def test_invalid_post(self):
         data = {}
-        number_of_patients_before = patient_models.Patient.objects.all().count()
+        num_of_patients_before = patient_models.Patient.objects.all().count()
 
         response = self.client.post(self.url, data=data, follow=False)
 
         self.assertEqual(200, response.status_code)
         self.assertContains(response, 'This field is required', count=12)
-        number_of_patients_after = patient_models.Patient.objects.all().count()
-        self.assertEqual(number_of_patients_before, number_of_patients_after)
+        num_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(num_of_patients_before, num_of_patients_after)
 
     def test_valid_post(self):
         data = {
@@ -87,10 +87,10 @@ class TestPatientAddView(TestCase):
             "phone_0": "+1234567890",
             "phone_1": "+1234567890"
         }
-        number_of_patients_before = patient_models.Patient.objects.all().count()
+        num_of_patients_before = patient_models.Patient.objects.all().count()
 
         response = self.client.post(self.url, data=data, follow=False)
         self.assertEqual(302, response.status_code)
 
-        number_of_patients_after = patient_models.Patient.objects.all().count()
-        self.assertEqual(number_of_patients_before+1, number_of_patients_after)
+        num_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(num_of_patients_before+1, num_of_patients_after)
