@@ -16,6 +16,7 @@ class CustomSignupView(allauth_views.SignupView):
     model = user_models.User
     form_class = CustomSignupForm
     template_name = 'users/signup.html'
+    success_url = reverse_lazy('patient_list')
 
 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}List of Records for {{patient.first_name}} {{patient.last_name}}{% endblock %}
+
+{% block content %}
+<a class="dropdown-item" href="{% url 'account_logout' %}"> Log Out </a>
+<h2>Records for {{patient.first_name}} {{patient.last_name}}</h2>
+
+<table class="table">
+	  <thead>
+        <tr>
+            <th scope="col">Notes</th>
+            <th scope="col">Attachments</th>
+            <th scope="col">Created At</th>
+        </tr>
+      </thead>
+
+        <tbody>
+        {% for record in record_list %}
+        <tr>
+            <td>
+                {{ record.notes }}
+            </td>
+            <td>
+                {{ record.attachments }}
+            </td>
+            <td>
+                {{ record.created_at }}
+            </td>
+        {% empty %}
+            <td>No records.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+</table>
+<a href="{% url 'add_record' pk=patient.pk %}"> Add Record</a>
+{% endblock %}

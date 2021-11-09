@@ -6,10 +6,7 @@ from phone_field import PhoneField
 
 
 class Address(models.Model):
-    address_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4,
-        editable=False
-    )
+    address_id = models.AutoField(primary_key=True)
     street_address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip_code = models.CharField(max_length=200)
@@ -68,16 +65,3 @@ class Patient(models.Model):
     def __str__(self):
         return "Patient ID is {} and name is {} {}".format(
             self.patient_id, self.first_name, self.last_name)
-
-
-class Records(models.Model):
-    record_id = models.AutoField(primary_key=True)
-    patient = models.ForeignKey(
-        Patient, on_delete=models.CASCADE
-    )
-    notes = models.CharField(max_length=700)
-    attachments = models.CharField(max_length=700)
-
-    def __str__(self):
-        return "{} \n\n{}".format(
-            self.notes, self.attachments)
