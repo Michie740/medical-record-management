@@ -12,8 +12,9 @@
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">DOB</th>
-            <th scope="col">Height</th>
-            <th scope="col">Weight</th>
+            <th scope="col">Edit Patient</th>
+            <th scope="col">View All Records For Patient</th>
+            <th scope="col">Add Record For Patient</th>
         </tr>
       </thead>
 
@@ -30,10 +31,13 @@
                 {{ patient.dob }}
             </td>
             <td>
-                {{ patient.height_ft }}' {{patient.height_in}}"
+                <a href="{% url 'edit_patient' pk=patient.pk %}"> Edit patient</a>
             </td>
             <td>
-                {{ patient.weight }}
+                <a href="{% url 'list_records' pk=patient.pk %}">View Records</a>
+            </td>
+            <td>
+                <a href="{% url 'add_record' pk=patient.pk %}"> Add Record</a>
             </td>
         {% empty %}
             <td>No patients.</td>
@@ -41,5 +45,6 @@
         {% endfor %}
         </tbody>
 </table>
+<a href="{% url 'add_patient' %}">Add a patient</a>
 
 {% endblock %}

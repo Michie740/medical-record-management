@@ -2,14 +2,13 @@
 
 {% load bootstrap4 %}
 
-{% block head_title %}Add Address{% endblock %}
+{% block head_title %}Add Record{% endblock %}
 
 {% block content %}
 
 
-<h1>Add Address</h1>
-
-<form class="add" id="addaddress_form" method="post" action="{% url 'add_address' %}">
+<h1>Add Record</h1>
+<form class="add" id="addrecord_form" method="post" action="{% url 'add_record' pk=patient.pk%}" enctype= multipart/form-data>
       {% csrf_token %}
       {% bootstrap_form form layout='horizontal' %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />

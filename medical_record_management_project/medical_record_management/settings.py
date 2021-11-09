@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'phone_field',
     'patients',
-    'users'
+    'users',
+    'records'
 ]
 
 MIDDLEWARE = [

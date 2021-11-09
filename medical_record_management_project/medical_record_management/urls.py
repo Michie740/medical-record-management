@@ -7,7 +7,8 @@ urlpatterns = [
     path('', include('users.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('patients/', include('patients.urls'))
+    path('patients/', include('patients.urls')),
+    path('records/', include('records.urls'))
 ]
 
 urlpatterns += static(
