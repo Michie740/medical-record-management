@@ -59,9 +59,9 @@ target/
 
 #Medical Record management specific ignores
 emails/
+db.squlite3
 migrations/
 db.sqlite3
 .DS_Store
 .coverage
-.idea/
-.vs
+.id

@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block head_title %}Edit Patient{% endblock %}
+
+{% block content %}
+
+
+<h1>Edit Patient</h1>
+
+<form class="edit" id="editpatient_form" method="post" action="{% url 'edit_patient' pk=object.pk %}">
+      {% csrf_token %}
+      {% bootstrap_form form layout='horizontal' %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      <button class="primaryAction btn btn-primary" type="submit">Edit</button>
+
+</form>
+
+{% endblock %}

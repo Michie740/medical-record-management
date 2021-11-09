@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load bootstrap4 %}
+
+{% block head_title %}Add Address{% endblock %}
+
+{% block content %}
+
+
+<h1>Add Address</h1>
+
+<form class="add" id="addaddress_form" method="post" action="{% url 'add_address' %}">
+      {% csrf_token %}
+      {% bootstrap_form form layout='horizontal' %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      <button class="primaryAction btn btn-primary" type="submit">Create</button>
+
+</form>
+
+{% endblock %}
