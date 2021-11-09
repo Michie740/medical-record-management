@@ -9,7 +9,7 @@
 
 <h1>Edit Patient</h1>
 
-<form class="edit" id="editpatient_form" method="post" action="{% url 'edit_patient' %}">
+<form class="edit" id="editpatient_form" method="post" action="{% url 'edit_patient' pk=object.pk %}">
       {% csrf_token %}
       {% bootstrap_form form layout='horizontal' %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />

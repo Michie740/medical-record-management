@@ -32,10 +32,7 @@ can be transferred or they can be reassigned to a new doctor.
 
 
 class Patient(models.Model):
-    patient_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4,
-        editable=False, unique=True
-    )
+    patient_id = models.AutoField(primary_key=True)
     doctor = models.ForeignKey(
         user_models.User, on_delete=models.CASCADE
     )
@@ -74,10 +71,7 @@ class Patient(models.Model):
 
 
 class Records(models.Model):
-    record_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4,
-        editable=False
-    )
+    record_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE
     )
