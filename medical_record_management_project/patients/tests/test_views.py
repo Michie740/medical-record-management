@@ -110,9 +110,9 @@ class TestPatientEditView(TestCase):
 
         self.assertEqual(200, response.status_code)
         self.assertContains(response, "<h1>Edit Patient</h1>")
-        first_name_input = '<input type="text" name="first_name" value="{}"'.format(
+        fname_input = '<input type="text" name="first_name" value="{}"'.format(
             self.patient.first_name)
-        self.assertContains(response, first_name_input)
+        self.assertContains(response, fname_input)
 
     def test_invalid_post(self):
         # there are 12 fields, and only one is filled
@@ -147,8 +147,10 @@ class TestPatientEditView(TestCase):
 
         self.assertEqual(302, response.status_code)
 
-        this_patient = patient_models.Patient.objects.get(patient_id=self.patient.patient_id)
+        this_patient = patient_models.Patient.objects.get(
+            patient_id=self.patient.patient_id)
 
         self.assertEqual(self.doctor.id, this_patient.doctor.id)
-        self.assertEqual(self.address.address_id, this_patient.address.address_id)
+        self.assertEqual(self.address.address_id,
+                         this_patient.address.address_id)
         self.assertEqual("tester@example.com", this_patient.email)
