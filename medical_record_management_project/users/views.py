@@ -12,11 +12,12 @@ class CustomLoginView(LoginView):
 
 
 class CustomSignupView(allauth_views.SignupView):
-    success_url = reverse_lazy('patient_list')
     model = user_models.User
     form_class = CustomSignupForm
     template_name = 'users/signup.html'
-    success_url = reverse_lazy('patient_list')
+
+    def get_success_url(self):
+        return reverse_lazy('patient_list')
 
 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
