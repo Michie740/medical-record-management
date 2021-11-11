@@ -8,9 +8,13 @@ class PatientAdmin(admin.ModelAdmin):
 
 
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ['address_id', 'street_address', 'city', 'zip_code', 'state']
-    search_fields = ['address_id', 'street_address', 'city', 'zip_code', 'state']
+    list_display = [
+        'address_id', 'street_address', 'city', 'zip_code', 'state'
+    ]
+    search_fields = [
+        'address_id', 'street_address', 'city', 'zip_code', 'state'
+    ]
+
 
 admin.site.register(models.Patient, PatientAdmin)
 admin.site.register(models.Address, AddressAdmin)
-

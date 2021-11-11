@@ -58,18 +58,18 @@ class TestPatientAddView(TestCase):
         response = self.client.get(self.url)
 
         self.assertContains(response, "<h1>Add Patient</h1>")
-        self.assertContains(response, '<label class="col-md-3 col-form-label" for="id_address">Address</label>')
+        self.assertContains(response, 'for="id_address">Address')
 
     def test_invalid_post(self):
         data = {}
-        number_of_patients_before = patient_models.Patient.objects.all().count()
+        num_of_patients_before = patient_models.Patient.objects.all().count()
 
         response = self.client.post(self.url, data=data, follow=False)
 
         self.assertEqual(200, response.status_code)
         self.assertContains(response, 'This field is required', count=12)
-        number_of_patients_after = patient_models.Patient.objects.all().count()
-        self.assertEqual(number_of_patients_before, number_of_patients_after)
+        num_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(num_of_patients_before, num_of_patients_after)
 
     def test_valid_post(self):
         data = {
@@ -87,10 +87,70 @@ class TestPatientAddView(TestCase):
             "phone_0": "+1234567890",
             "phone_1": "+1234567890"
         }
-        number_of_patients_before = patient_models.Patient.objects.all().count()
+        num_of_patients_before = patient_models.Patient.objects.all().count()
 
         response = self.client.post(self.url, data=data, follow=False)
         self.assertEqual(302, response.status_code)
 
-        number_of_patients_after = patient_models.Patient.objects.all().count()
-        self.assertEqual(number_of_patients_before+1, number_of_patients_after)
+        num_of_patients_after = patient_models.Patient.objects.all().count()
+        self.assertEqual(num_of_patients_before+1, num_of_patients_after)
+
+
+class TestPatientEditView(TestCase):
+
+    def setUp(self):
+        self.address = patient_factories.AddressFactory()
+        self.doctor = user_factories.UserFactory()
+        self.patient = patient_factories.PatientFactory()
+
+        self.url = reverse("edit_patient", kwargs={'pk': self.patient.pk})
+
+    def test_get(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(200, response.status_code)
+        self.assertContains(response, "<h1>Edit Patient</h1>")
+        fname_input = '<input type="text" name="first_name" value="{}"'.format(
+            self.patient.first_name)
+        self.assertContains(response, fname_input)
+
+    def test_invalid_post(self):
+        # there are 12 fields, and only one is filled
+        data = {
+            "doctor": self.doctor.id
+        }
+
+        response = self.client.post(self.url, data=data, follow=False)
+
+        self.assertEqual(200, response.status_code)
+        self.assertContains(response, 'This field is required', count=11)
+
+    def test_valid_post(self):
+        # there are 12 fields, and only one is filled
+        data = {
+            "doctor": self.doctor.id,
+            "address": self.address.address_id,
+            "first_name": "First_Name",
+            "last_name": "Last_Name",
+            "dob": "01/02/03",
+            "preexisting_conditions": "None",
+            "allergies": "None",
+            "height_ft": 2,
+            "height_in": 1,
+            "weight": 2,
+            "email": "tester@example.com",
+            "phone_0": "+1234567890",
+            "phone_1": "+1234567890"
+        }
+
+        response = self.client.post(self.url, data=data, follow=False)
+
+        self.assertEqual(302, response.status_code)
+
+        this_patient = patient_models.Patient.objects.get(
+            patient_id=self.patient.patient_id)
+
+        self.assertEqual(self.doctor.id, this_patient.doctor.id)
+        self.assertEqual(self.address.address_id,
+                         this_patient.address.address_id)
+        self.assertEqual("tester@example.com", this_patient.email)

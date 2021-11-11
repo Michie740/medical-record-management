@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.generic import RedirectView
 from records import views as record_views
 
 urlpatterns = [
