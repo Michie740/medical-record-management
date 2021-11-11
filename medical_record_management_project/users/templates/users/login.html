@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% load static %}{% load bootstrap4 %} {% block head_title %}Sign Up {% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<br>
+<div id="singincontent">
+    <div id="center">
+
+        <div class="page_name">
+            <h3>Sign In</h3>
+        </div>
+
+        <div>
+            <div class="info">
+                <input type="text" placeholder="username"> <br>
+            </div>
+            <div class="info">
+                <input type="text" placeholder="password"> <br>
+            </div>
+        </div>
+        <div>
+            <input type="button" value="Next">
+        </div>
+        <div><br> Don't have an account? <a href="{% url 'account_signup' %}"> Register </a><br /></div>
+        <a href="{% url 'account_change_password' %}">Forgot password</a>
+
+    </div>
+</div>
+<br> {% endblock%}

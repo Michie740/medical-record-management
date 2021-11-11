@@ -1,11 +1,11 @@
-{% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% extends "base.html" %} {% load static %} {% block title %} Home Page
+<br/>{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<br />
 
-{% block content %}
-You're home! <br />
-<a href="{% url 'account_login' %}"> Sign In </a><br />
-<a href="{% url 'account_signup' %}"> Sign Up </a><br />
-<a href="{% url 'account_logout' %}"> Sign Out </a>
-
-
+<div id="singincontent">
+    <a href="{% url 'account_login' %}" id="link"> Sign In </a><br />
+    <a href="{% url 'account_signup' %}" id="link"> Sign Up </a><br />
+    <a href="{% url 'account_logout' %}"> Sign Out </a>
+</div>
 {% endblock %}

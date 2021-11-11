@@ -1,40 +1,53 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <br/>
+    <!-- <img src="{% static 'users/images/MediRec.jpg' %}" class="logo" alt="logo"> <br/> -->
+
 </head>
 
 
 
 <body>
-{% if messages %}
-<div class="alert alert-warning alert-dismissible" role="alert">
-<ul class=flashes>
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  </div>
-{% endif %}
-    <div id="title" class="container-fluid">
-    {% block title %}{% endblock %}
-  </div>
-<br>
-  <div id="content" class="container-fluid">
-    {% block content %}{% endblock %}
-  </div>
-
-  <div id="footer">
-        {% block footer %}
-        <br><br>
-        <div class="text-center">
-        &copy; Copyright 2021
+    {% if messages %}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <ul class=flashes>
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="left">
+        <div class="bodycontent">
+            <div id="title" class="container-fluid">
+                <img src="{% static 'users/images/MediRec.jpg' %}" class="logo" alt="logo"> <br/> {% block title %}{% endblock %}
+            </div>
+            <br>
+            <div id="content" class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
         </div>
-        {% endblock %}
-  </div>
+        <div id="footer">
+            {% block footer %}
+            <br><br>
+            <div class="text-center">
+                &copy; Copyright 2021 | v1.4
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="design ">
+
+    </div>
+
+
 
 </body>
+
 </html>
