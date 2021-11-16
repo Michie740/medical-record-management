@@ -3,15 +3,15 @@ from django.db import models
 from users import models as user_models
 from phone_field import PhoneField
 
-MAX_LENGTH = 200
+MAX_LENGTH_DEFAULT = 200
 
 
 class Address(models.Model):
     address_id = models.AutoField(primary_key=True)
-    street_address = models.CharField(max_length=MAX_LENGTH)
-    city = models.CharField(max_length=MAX_LENGTH)
-    zip_code = models.CharField(max_length=MAX_LENGTH)
-    state = models.CharField(max_length=MAX_LENGTH)
+    street_address = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    city = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    zip_code = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    state = models.CharField(max_length=MAX_LENGTH_DEFAULT)
 
     def __str__(self):
         return "{} \n{}, {} {}".format(
@@ -37,15 +37,15 @@ class Patient(models.Model):
     address = models.ForeignKey(
         Address, null=True, on_delete=models.SET_NULL
     )
-    first_name = models.CharField(max_length=MAX_LENGTH)
-    last_name = models.CharField(max_length=MAX_LENGTH)
+    first_name = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    last_name = models.CharField(max_length=MAX_LENGTH_DEFAULT)
     dob = models.DateTimeField()
-    preexisting_conditions = models.CharField(max_length=MAX_LENGTH)
+    preexisting_conditions = models.CharField(max_length=MAX_LENGTH_DEFAULT)
     allergies = models.CharField(max_length=700)
     height_ft = models.PositiveIntegerField()
     height_in = models.PositiveIntegerField()
     weight = models.FloatField()
-    email = models.CharField(max_length=MAX_LENGTH)
+    email = models.CharField(max_length=MAX_LENGTH_DEFAULT)
     phone = PhoneField(
         help_text="Patient's preferred phone number"
     )
