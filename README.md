@@ -2,9 +2,9 @@
 
 **Instructions**
 1. To run this project locally, fork and clone the repo (ideally in a virtual environment)
-1. Navigate into medical_record_management and then run `make dev_env` to download dependencies
+1. Navigate into medical_record_management 
+1. Run `make setup_dev` to setup dependencies and build DBs
 1. Run `make lint` to use flake8 linter on all .py files
-1. Run `python manage.py makemigrations` and `python manage.py migrate` to build DBs
 1. Run `python manage.py runserver` to run locally
 1. Navigate to `127.0.0.1:8000/` on browser for home page
 1. To view admin style, create superuser using `python manage.py createsuperuser` and then navigate to `127.0.0.1:8000/admin`
