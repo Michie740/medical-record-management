@@ -10,8 +10,11 @@ lint: FORCE
 	flake8 medical_record_management_project/
 
 
-dev_env: FORCE
+env: FORCE
 	pip install -r requirements.txt
+
+dev_env: FORCE
+	pip install -r requirements-dev.txt
 
 db: FORCE
 	cd $(PROJ_DIR); python manage.py makemigrations; python manage.py migrate
