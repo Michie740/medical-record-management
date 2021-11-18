@@ -11,8 +11,15 @@
 1. For testing: run `make tests` or `make coverage` depending on if you just want to run tests or if you want a full coverage report
 
 
+**Email Authentication**
+1. As of 11/18/21, email authentication for new accounts has been added.
+1. For testing purposes, this can easily be switched off by setting `ACCOUNT_EMAIL_VERIFICATION = False` in settings.py
+1. When running locally, emails are sent to the medical_record_management_project/emails directory. Follow the link to verify email accounts for a user. Do so quickly before link expires or resend link if necessary.
+
+
 **Basic Concept:**\
 A medical record management system designed for the hospital setting. It will allow doctors to document patient information, provide updates, and keep track of medical/family history.
+
 
 **Database Design**
 [Medical Record Management Database Design.pdf](https://github.com/Michie740/medical-record-management/files/7165864/Medical.Record.Management.Database.Design.pdf)
@@ -32,9 +39,6 @@ Patient profile view\
 Add patient view\
 Edit patient view\
 Patient roster view (to see all the patients in the system)\
-Import records from other software\
-Export records to a common format\
-HIPAA compliance
 
 **Project Plan:**\
 Create database design\
@@ -51,3 +55,6 @@ Link to patient’s insurance plan using API (?)\
 Create a patient view to add updates, fill out forms, etc.\
 Create patient roster for individual doctors (based on rounds)\
 Ease of deployment and migration
+HIPAA compliance
+Import records from other software\
+Export records to a common format\
