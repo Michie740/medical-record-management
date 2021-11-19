@@ -60,4 +60,4 @@ class TestCustomSignupForm(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(users_pre_count+1, users_post_count)
-        self.assertEqual('/patients/list/', response['location'])
+        self.assertEqual('/accounts/confirm-email/', response['location'])
