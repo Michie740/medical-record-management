@@ -40,7 +40,6 @@ class PatientAddView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-
 class PatientEditView(UpdateView):
     model = patient_models.Patient
 
@@ -51,7 +50,7 @@ class PatientEditView(UpdateView):
               'height_ft', 'height_in', 'weight', 'email', 'phone']
 
     def get_success_url(self):
-        return '<pk>'
+        return reverse_lazy('patient_list')
 
 
 class AddressAddView(CreateView):
