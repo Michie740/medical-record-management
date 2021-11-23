@@ -29,7 +29,7 @@ class PatientAddView(CreateView):
         context_data = super().get_context_data(**kwargs)
         context_data["formset"] = patient_forms.AddressFormSet
         if self.request.POST:
-            context_data["address"] = patient_forms.AddressFormSet(self.request.POST)[0]
+            context_data["address_formset"] = patient_forms.AddressFormSet(self.request.POST)
         return context_data
 
     def get_success_url(self):
@@ -39,11 +39,14 @@ class PatientAddView(CreateView):
         context_data = self.get_context_data()
         self.object = form.save(commit=False)
         self.object.doctor = self.request.user
-        address = context_data["address"]
-        if address.is_valid():
-            saved_address_obj = address.save(self)
-        self.object.address = saved_address_obj
-        self.object.save()
+        address_formset = context_data["address_formset"]
+        if address_formset.is_valid():
+            address_form = address_formset[0]
+            saved_address_obj = address_form.save(self)
+            self.object.address = saved_address_obj
+            self.object.save()
+        else:
+            print("Address error", address_formset.errors, address_formset.non_form_errors())
         return super().form_valid(form)
 
 
