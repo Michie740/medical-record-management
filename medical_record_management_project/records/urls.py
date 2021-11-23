@@ -8,4 +8,7 @@ urlpatterns = [
     path('list/<pk>/',
          record_views.RecordListView.as_view(),
          name='list_records'),
+    path('edit_record/<pk>/',
+         record_views.RecordEditView.as_view(),
+         name='edit_record'),
 ]
