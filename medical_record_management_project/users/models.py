@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+MAX_LENGTH_DEFAULT = 200
+
 
 class User(AbstractUser):
     SUPERUSER = 'Superuser'
@@ -21,12 +23,12 @@ class User(AbstractUser):
         choices=SECURITY_LEVELS, max_length=50, default=BASIC
     )
     # TODO: ADD A CONSTANT FOR THE 200
-    security_q1 = models.CharField(max_length=200)
-    security_q2 = models.CharField(max_length=200)
-    security_q3 = models.CharField(max_length=200)
-    security_a1 = models.CharField(max_length=200)
-    security_a2 = models.CharField(max_length=200)
-    security_a3 = models.CharField(max_length=200)
+    security_q1 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    security_q2 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    security_q3 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    security_a1 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    security_a2 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
+    security_a3 = models.CharField(max_length=MAX_LENGTH_DEFAULT)
 
     def __str__(self):
         return (
