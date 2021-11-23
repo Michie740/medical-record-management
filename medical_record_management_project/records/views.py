@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from users.views import MediumOrHighSecurityLevelOnlyMixin
 from records import models as record_models
 from patients import models as patient_models
@@ -57,3 +57,15 @@ class RecordAddView(MediumOrHighSecurityLevelOnlyMixin, CreateView):
     def form_invalid(self, form):
         print("Record Add Errors:", form.errors)
         return super().form_invalid(form)
+        
+        
+class RecordEditView(MediumOrHighSecurityLevelOnlyMixin, UpdateView):
+    model = record_models.Record
+    template_name_suffix = '_update_form'
+
+    fields = ['notes', 'attachments']
+
+    def get_success_url(self):
+        return '<pk>'
+        
+        
