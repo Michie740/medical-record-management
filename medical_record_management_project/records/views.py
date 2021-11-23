@@ -66,6 +66,6 @@ class RecordEditView(MediumOrHighSecurityLevelOnlyMixin, UpdateView):
     fields = ['notes', 'attachments']
 
     def get_success_url(self):
-        return '<pk>'
+        return '/patients/list'
         
         

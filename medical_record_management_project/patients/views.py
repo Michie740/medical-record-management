@@ -51,7 +51,7 @@ class PatientEditView(UpdateView):
               'height_ft', 'height_in', 'weight', 'email', 'phone']
 
     def get_success_url(self):
-        return '<pk>'
+        return '/patients/list'
 
 
 class AddressAddView(CreateView):
