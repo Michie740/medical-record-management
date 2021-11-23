@@ -27,6 +27,9 @@
             <td>
                 {{ record.created_at }}
             </td>
+            <td>
+                <a href="/records/edit_record/{{ record.record_id }}/">edit</a>
+            </td>
         {% empty %}
             <td>No records.</td>
         </tr>
