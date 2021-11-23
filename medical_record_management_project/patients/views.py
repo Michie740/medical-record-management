@@ -28,16 +28,23 @@ class PatientAddView(CreateView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data["formset"] = patient_forms.AddressFormSet
+        if self.request.POST:
+            context_data["address"] = patient_forms.AddressFormSet(self.request.POST)[0]
         return context_data
 
     def get_success_url(self):
         return reverse_lazy('patient_list')
 
     def form_valid(self, form):
+        context_data = self.get_context_data()
         self.object = form.save(commit=False)
         self.object.doctor = self.request.user
+        address = context_data["address"]
+        if address.is_valid():
+            saved_address_obj = address.save(self)
+        self.object.address = saved_address_obj
         self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
+        return super().form_valid(form)
 
 
 class PatientEditView(UpdateView):
