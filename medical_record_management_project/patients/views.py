@@ -2,7 +2,6 @@ from users.views import MediumOrHighSecurityLevelOnlyMixin
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
 from patients import models as patient_models
 from patients import forms as patient_forms
 
