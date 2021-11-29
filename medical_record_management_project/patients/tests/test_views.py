@@ -1,8 +1,8 @@
-from django.test import Client, TestCase
-
+from django.test import Client, TestCase, RequestFactory
 from django.urls import reverse
 from patients.tests import factories as patient_factories
 from patients import models as patient_models
+from patients.views import PatientAddView
 from users.tests import factories as user_factories
 from users import models as user_models
 
@@ -50,7 +50,6 @@ class TestPatientListView(TestCase):
 class TestPatientAddView(TestCase):
 
     def setUp(self):
-        self.address = patient_factories.AddressFactory()
         self.doctor = user_factories.UserFactory()
         self.url = reverse("add_patient")
 
@@ -58,23 +57,31 @@ class TestPatientAddView(TestCase):
         response = self.client.get(self.url)
 
         self.assertContains(response, "<h1>Add Patient</h1>")
-        self.assertContains(response, 'for="id_address">Address')
 
     def test_invalid_post(self):
         data = {}
         num_of_patients_before = patient_models.Patient.objects.all().count()
+        num_addresses_before = patient_models.Address.objects.all().count()
 
         response = self.client.post(self.url, data=data, follow=False)
 
         self.assertEqual(200, response.status_code)
-        self.assertContains(response, 'This field is required', count=12)
+        self.assertContains(response, 'This field is required', count=10)
         num_of_patients_after = patient_models.Patient.objects.all().count()
+        num_of_addresses_after = patient_models.Address.objects.all().count()
         self.assertEqual(num_of_patients_before, num_of_patients_after)
+        self.assertEqual(num_addresses_before, num_of_addresses_after)
 
     def test_valid_post(self):
         data = {
-            "doctor": self.doctor.id,
-            "address": self.address.address_id,
+            "form-TOTAL_FORMS": 1,
+            "form-INITIAL_FORMS": 0,
+            "form-MIN_NUM_FORMS": 0,
+            "form-MAX_NUM_FORMS": 1000,
+            "form-0-street_address": "123 Testing Lane",
+            "form-0-city": "Gotham City",
+            "form-0-zip_code": "01357",
+            "form-0-state": "NY",
             "first_name": "First_Name",
             "last_name": "Last_Name",
             "dob": "01/02/03",
@@ -88,12 +95,17 @@ class TestPatientAddView(TestCase):
             "phone_1": "+1234567890"
         }
         num_of_patients_before = patient_models.Patient.objects.all().count()
+        num_addresses_before = patient_models.Address.objects.all().count()
 
-        response = self.client.post(self.url, data=data, follow=False)
+        request = RequestFactory().post('/[Path to new Patient Form]/', data=data)
+        request.user = self.doctor
+        response = PatientAddView.as_view()(request)
         self.assertEqual(302, response.status_code)
 
         num_of_patients_after = patient_models.Patient.objects.all().count()
+        num_of_addresses_after = patient_models.Address.objects.all().count()
         self.assertEqual(num_of_patients_before+1, num_of_patients_after)
+        self.assertEqual(num_addresses_before+1, num_of_addresses_after)
 
 
 class TestPatientEditView(TestCase):

@@ -66,5 +66,5 @@ db.sqlite3
 .coverage
 .id
 localdata/
-.vs
-.vscode
+.vs/
+.vscode/
