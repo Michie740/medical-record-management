@@ -9,7 +9,8 @@ from allauth.account.views import LoginView, PasswordChangeView
 
 class CustomLoginView(LoginView):
     template_name = "users/login.html"
-    success_url = reverse_lazy('patient_list')
+    def get_success_url(self):
+            return reverse_lazy('patient_list')
 
 
 class CustomSignupView(allauth_views.SignupView):
