@@ -8,7 +8,7 @@
     {% csrf_token %} {% bootstrap_form form layout='horizontal' %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     <button class="primaryAction btn btn-primary" type="submit">Sign In </button>
-    <p>Dont have an account? Then please <a href="{{ account_signup }}">Sign Up</a>.</p>
+    <p>Dont have an account? Then please <a href="{{ signup_url }}">Sign Up</a>.</p>
 
 </form>
 
