@@ -1,13 +1,12 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% block title %} {% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'users/patientsstyle.css' %}">
+<h2 class="center">List of All Your Patients</h2>
 
-{% block title %}List of All Your Patients{% endblock %}
-
-{% block content %}
-<a class="dropdown-item" href="{% url 'account_logout' %}"> Log Out </a>
-<h2>Patients</h2>
+<br>
+<h3 class="center">Patients</h3>
 
 <table class="table">
-	  <thead>
+    <thead>
         <tr>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
@@ -16,9 +15,9 @@
             <th scope="col">View All Records For Patient</th>
             <th scope="col">Add Record For Patient</th>
         </tr>
-      </thead>
+    </thead>
 
-        <tbody>
+    <tbody>
         {% for patient in patient_list %}
         <tr>
             <td>
@@ -39,12 +38,14 @@
             <td>
                 <a href="{% url 'add_record' pk=patient.pk %}"> Add Record</a>
             </td>
-        {% empty %}
+            {% empty %}
             <td>No patients.</td>
         </tr>
         {% endfor %}
-        </tbody>
+    </tbody>
 </table>
-<a href="{% url 'add_patient' %}">Add a patient</a>
+<div class="links">
+    <div class="buttons"><a href="{% url 'add_patient' %}" id="link">Add a patient</a></div>
 
-{% endblock %}
+    <div class="buttons"><a href="{% url 'account_logout' %}" id="link">Log Out</a></div>
+</div> {% endblock %}
