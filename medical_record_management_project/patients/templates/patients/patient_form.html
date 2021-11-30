@@ -1,23 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.html" %}{% load static %} {% load bootstrap4 %} {% block head_title %}Add Patient{% endblock %} {% block content %}
 
-{% load bootstrap4 %}
-
-{% block head_title %}Add Patient{% endblock %}
-
-{% block content %}
-
+<link rel="stylesheet" href="{% static 'users/patientsstyle.css' %}">
 
 <h1>Add Patient</h1>
 
 <form class="add" id="addpatient_form" method="post" action="{% url 'add_patient' %}">
-      {% csrf_token %}
-      {% bootstrap_form form layout='horizontal' %}
-      Address:
-            <div style="padding: 14px 16px;">
-                  {% bootstrap_formset formset layout='inline' %}
-            </div>
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      <button class="primaryAction btn btn-primary" type="submit">Create</button>
+    {% csrf_token %} {% bootstrap_form form layout='horizontal' %} Address:
+    <div style="padding: 14px 16px;">
+        {% bootstrap_formset formset layout='inline' %}
+    </div>
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    <button class="primaryAction btn btn-primary" type="submit">Create</button>
 
 </form>
 
