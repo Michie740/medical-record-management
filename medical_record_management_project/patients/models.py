@@ -16,7 +16,7 @@ class Address(models.Model):
     class Meta:
         verbose_name = "Address"
         verbose_name_plural = "Addresses"
-        
+
     def __str__(self):
         return "{} \n{}, {} {}".format(
             self.street_address, self.city, self.state, self.zip_code)

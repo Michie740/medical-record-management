@@ -30,6 +30,7 @@ class CustomSignupForm(SignupForm):
         user.save()
         return user
 
+
 class CustomLoginForm(LoginForm):
     def save(self):
         user = super(CustomLoginForm, self).login()

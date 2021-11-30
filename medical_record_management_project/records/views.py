@@ -57,8 +57,8 @@ class RecordAddView(MediumOrHighSecurityLevelOnlyMixin, CreateView):
     def form_invalid(self, form):
         print("Record Add Errors:", form.errors)
         return super().form_invalid(form)
-        
-        
+
+
 class RecordEditView(MediumOrHighSecurityLevelOnlyMixin, UpdateView):
     model = record_models.Record
     template_name_suffix = '_update_form'
@@ -67,5 +67,3 @@ class RecordEditView(MediumOrHighSecurityLevelOnlyMixin, UpdateView):
 
     def get_success_url(self):
         return '/patients/list'
-        
-        

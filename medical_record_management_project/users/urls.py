@@ -8,7 +8,7 @@ urlpatterns = [
     ), name='home'),
     path('accounts/login/',
          user_views.CustomLoginView.as_view(),
-     name="account_login"),
+         name="account_login"),
     path('accounts/signup/',
          user_views.CustomSignupView.as_view(),
          name="account_signup"
