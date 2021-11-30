@@ -69,6 +69,8 @@ AUTHENTICATION_BACKENDS = (
 
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
+    'login': 'users.forms.CustomLoginForm',
+
 }
 
 ACCOUNT_EMAIL_VERIFICATION = True

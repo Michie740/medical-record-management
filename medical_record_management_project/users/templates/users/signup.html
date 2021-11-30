@@ -3,12 +3,12 @@
 <h1>Sign Up</h1>
 <link rel="stylesheet" href="{% static 'users/style.css' %}">
 
-<p>Already have an account? Then please <a href="{{ login_url }}">Sign in</a>.</p>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %} {% bootstrap_form form layout='horizontal' %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     <button class="primaryAction btn btn-primary" type="submit">Sign Up </button>
+    <p>Already have an account? Then please <a href="{{ login_url }}">Sign in</a>.</p>
 
 </form>
 
