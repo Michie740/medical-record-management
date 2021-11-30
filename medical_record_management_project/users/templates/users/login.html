@@ -1,28 +1,15 @@
-{% extends "base.html" %} {% load static %}{% load bootstrap4 %} {% block head_title %}Sign Up {% endblock %} {% block content %}
+ {% extends "base.html" %} {% load static %}{% load bootstrap4 %} {% block head_title %}Sign Up {% endblock %} {% block content %}
 
+<h1>Sign In</h1>
 <link rel="stylesheet" href="{% static 'users/style.css' %}">
-<br>
-<div id="singincontent">
-    <div id="center">
 
-        <div class="page_name">
-            <h3>Sign In</h3>
-        </div>
 
-        <div>
-            <div class="info">
-                <input type="text" placeholder="username"> <br>
-            </div>
-            <div class="info">
-                <input type="text" placeholder="password"> <br>
-            </div>
-        </div>
-        <div>
-            <input type="button" value="Next">
-        </div>
-        <div><br> Don't have an account? <a href="{% url 'account_signup' %}"> Register </a><br /></div>
-        <a href="{% url 'account_change_password' %}">Forgot password</a>
+<form class="login" id="login_form" method="post" action="{% url 'account_login' %}">
+    {% csrf_token %} {% bootstrap_form form layout='horizontal' %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    <button class="primaryAction btn btn-primary" type="submit">Sign In </button>
+    <p>Dont have an account? Then please <a href="{{ account_signup }}">Sign Up</a>.</p>
 
-    </div>
-</div>
-<br> {% endblock%}
+</form>
+
+{% endblock %}

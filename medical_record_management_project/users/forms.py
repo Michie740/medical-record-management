@@ -1,5 +1,5 @@
 
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 from django import forms
 from users import models as user_models
 
@@ -28,4 +28,9 @@ class CustomSignupForm(SignupForm):
         user.security_a3 = self.cleaned_data['security_a3']
         user.security_level = self.cleaned_data['security_level']
         user.save()
+        return user
+
+class CustomLoginForm(LoginForm):
+    def save(self):
+        user = super(CustomLoginForm, self).login()
         return user
